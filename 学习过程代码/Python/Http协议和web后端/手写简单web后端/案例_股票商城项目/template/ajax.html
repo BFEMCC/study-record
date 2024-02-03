@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/js/jquery-1.12.4.min.js"></script>
+
+
+    <script>
+        function request(){
+            // obj就会接受到服务器发送过来的json格式的数据
+             $.get("/ajax_data.html",function(obj){
+                    // [{"time": str(time.time())}]
+                    $("div").html(obj[0].time);
+                },"json");
+        };
+    </script>
+
+</head>
+<body>
+    <div>nihao</div>
+    <input type="button" value="刷新" onclick="request()">
+    <img src="./web.jpg" alt="">
+</body>
+</html>
