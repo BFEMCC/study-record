@@ -1,0 +1,226 @@
+#frame {
+    border-top: 1px solid rgb(184, 184, 184);
+    border-bottom: 1px solid rgb(184, 184, 184);
+    border-left: 1px solid rgb(184, 184, 184);
+    background-color: rgba(234, 233, 234, 220);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#frame_2 {
+    border-top: 1px solid rgb(184, 184, 184);
+    border-bottom: 1px solid rgb(184, 184, 184);
+    border-right: 1px solid rgb(184, 184, 184);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#frame_5 {
+    background-color: rgb(242, 242, 242);
+    border-top-right-radius: 10px;
+}
+
+#frame_3 {
+    background-color: rgb(240, 240, 240);
+}
+
+#frame_6 {
+    background-color: rgb(242, 242, 242);
+    border-bottom-right-radius: 10px;
+}
+
+#frame_9 {
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+#frame_10 {
+    background-color: rgb(255, 255, 255);
+}
+
+#sendEdit {
+    background-color: rgb(242, 242, 242);
+    border: none;
+}
+
+#pushButton {
+    border: none;
+    background-color: transparent;
+    icon: url(:/svg/folder.svg);
+}
+
+#pushButton:hover {
+    icon: url(:/svg/folder-blue.svg);
+}
+
+#pushButton_2 {
+    border: none;
+    background-color: transparent;
+    icon: url(:/svg/image-outline.svg);
+}
+
+#pushButton_2:hover {
+    icon: url(:/svg/image-outline-blue.svg);
+}
+
+#pushButton_4 {
+    border: none;
+    background-color: transparent;
+    icon: url(:/svg/clock.svg);
+}
+
+#pushButton_4:hover {
+    icon: url(:/svg/clock-blue.svg);
+}
+
+#sendBtn {
+    background-color: rgb(0, 153, 255);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+}
+
+#sendBtn:hover {
+    background-color: rgb(0, 147, 245);
+}
+
+#sendBtn:pressed {
+    background-color: rgb(0, 134, 224);
+}
+
+#colseBtn {
+    border: none;
+    border-top-right-radius: 10px;
+    background-color: rgb(242, 242, 242);
+    icon: url(:/svg/exit_black.svg);
+}
+
+#colseBtn:hover {
+    background-color: rgb(196, 43, 28);
+    icon: url(:/IMAGE/exit_white.png);
+}
+
+#pushButton_8 {
+    border: none;
+    background-color: rgb(242, 242, 242);
+    icon: url(:/svg/maxsize.svg);
+}
+
+#pushButton_8:hover {
+    background-color: rgb(232, 232, 232);
+}
+
+#pushButton_9 {
+    border: none;
+    background-color: rgb(242, 242, 242);
+    icon: url(:/svg/minimize.svg);
+}
+
+#pushButton_9:hover {
+    background-color: rgb(232, 232, 232);
+}
+
+#pushButton_10 {
+    border: none;
+    background-color: transparent;
+    icon: url(:/svg/video.svg);
+}
+
+#pushButton_10:hover {
+    icon: url(:/svg/video-blue.svg);
+}
+
+#pushButton_11 {
+    border: none;
+    background-color: transparent;
+    icon: url(:/svg/telephone.svg);
+}
+
+#pushButton_11:hover {
+    icon: url(:/svg/telephone-blue.svg);
+}
+
+#openSavePath {
+    border: none;
+    background-color: transparent;
+    background-image: url(:/svg/folder.svg);
+}
+
+#openSavePath:hover {
+    background-image: url(:/svg/folder-blue.svg);
+}
+
+#pushButton_14 {
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    background-image: url(:/svg/dots-nine-bold.svg);
+}
+
+#pushButton_14:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+#setSavePath {
+    border: none;
+    background-color: transparent;
+    background-image: url(:/svg/three-line-horizontal.svg);
+}
+
+#setSavePath:hover {
+    background-image: url(:/svg/three-line-horizontal-blue.svg);
+}
+
+#pushButton_19 {
+    border: none;
+    background-color: transparent;
+    icon: url(:/svg/screen-share.svg);
+}
+
+#pushButton_19:hover {
+    icon: url(:/svg/screen-share-blue.svg);
+}
+
+#pushButton_20 {
+    border: none;
+    background-color: transparent;
+    icon: url(:/svg/dots-three.svg);
+}
+
+#pushButton_20:hover {
+    icon: url(:/svg/dots-three-blue.svg);
+}
+
+#HorizontalSplitter::handle {
+    background-color: rgb(232, 232, 232);
+}
+
+#VerticalSplitter::handle {
+    background-color: rgb(232, 232, 232);
+}
+
+#chat {
+    image: url(:/svg/chat.svg);
+}
+
+#chat::checked {
+    image: url(:/svg/chat-blue.svg);
+}
+
+#chat::indicator {
+    border: none;
+    background: transparent;
+}
+
+#radioButton_2 {
+    image: url(:/svg/contact.svg);
+}
+
+#radioButton_2::checked {
+    image: url(:/svg/contact-blue.svg);
+}
+
+#radioButton_2::indicator {
+    border: none;
+    background: transparent;
+}

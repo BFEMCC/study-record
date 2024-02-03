@@ -1,0 +1,594 @@
+#include "mainwidget.h"
+#include "ui_mainwidget.h"
+
+MainWidget::MainWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::MainWidget),
+    login(new Login),
+    timer(new QTimer(this)),
+    tcpSocket(new QTcpSocket(this))
+{
+    connect(login,&Login::ServerMsg,this,&MainWidget::connectToServer);
+
+    connect(tcpSocket,&QTcpSocket::connected,login,&Login::accept);
+    connect(tcpSocket,&QTcpSocket::errorOccurred,this,&MainWidget::cnnectError);
+    connect(timer,&QTimer::timeout,this,[=]{tcpSocket->waitForConnected(3500);});
+
+    connect(tcpSocket,&QTcpSocket::readyRead,this,[=](){
+
+//                    QByteArray firstline = tcpSocket->readLine(); // 读取一行,判断是否时是发送文件
+
+//                    if (firstline == MATCH_KEY) // 密钥匹配,是接收文件,处理文件名、大小、下载路径
+//                    {
+//                        qDebug() << "客户端发来文件";
+//                        tcpSocket->waitForReadyRead();                                      // 等待发来文件名和大小
+//                        QString filenameandsize = QString::fromUtf8(tcpSocket->readLine()); // 转为QString
+//                        qDebug() << filenameandsize;
+
+//                        QStringList parts = filenameandsize.split(decollator); // 使用split方法根据分隔符 decollator 将字符串分割成两部分
+
+//                        dates.value(tcpSocket)->RecvFileName = parts.at(0);              // 第一部分是文件名
+//                        dates.value(tcpSocket)->RecvFileSize = parts.at(1).toLongLong(); // 第二部分是字节数，将其转换为长整型
+
+//                        qDebug() << "文件名: " << dates.value(tcpSocket)->RecvFileName;
+//                        qDebug() << "字节数: " << dates.value(tcpSocket)->RecvFileSize;
+
+//                        QString baseName = QFileInfo(dates.value(tcpSocket)->RecvFileName).completeBaseName(); // 获取不包含后缀的文件名
+//                        QString suffix = QFileInfo(dates.value(tcpSocket)->RecvFileName).suffix();             // 获取拓展名
+//                        int index = 0;                                                                         // 数字序号索引
+
+//                        dates.value(tcpSocket)->SaveFileName = dates.value(tcpSocket)->RecvFileName; // 初始化新文件名
+
+//                        // 循环，直到找到一个文件名不存在的文件
+//                        while (QFile::exists(fileDowPath + "/" + dates.value(tcpSocket)->SaveFileName)) // 检查新文件名
+//                        {
+//                            index++;
+//                            dates.value(tcpSocket)->SaveFileName = QString("%1 (%2).%3").arg(baseName).arg(index).arg(suffix);
+//                        }
+
+//                        // 此时 SaveFileName 包含一个可用的文件名
+//                        qDebug() << "下载文件名：" << dates.value(tcpSocket)->SaveFileName;
+
+//                        dates.value(tcpSocket)->IsRecvFile = true;
+//                    }
+
+//                    else if (dates.value(tcpSocket)->IsRecvFile) // 文件名、路径、大小等处理完毕，开始接收后续文件
+//                    {
+//                        QFile *recvfile = new QFile(fileDowPath + "/" + dates.value(tcpSocket)->SaveFileName);
+//                        recvfile->open(QFile::WriteOnly);
+
+//                        qDebug() << "文件保存地址：" << fileDowPath + "/" + dates.value(tcpSocket)->SaveFileName;
+
+//                        QByteArray filecontent = firstline + tcpSocket->readAll();
+//                        recvfile->write(filecontent);
+
+//                        dates.value(tcpSocket)->SavaFileSize += filecontent.size();                       // 每次写入记录写入大小
+//                        if (dates.value(tcpSocket)->SavaFileSize == dates.value(tcpSocket)->RecvFileSize) // 当写入大小等于文件大小时,文件接收完毕
+//                        {
+//                            qDebug() << "文件接收完毕";
+
+//                            dates.value(tcpSocket)->IsRecvFile = false;
+//                            dates.value(tcpSocket)->SavaFileSize = 0;
+//                            dates.value(tcpSocket)->RecvFileSize = 0;
+
+//                            dates.value(tcpSocket)->RecvFileName.clear();
+//                            dates.value(tcpSocket)->SaveFileName.clear();
+
+//                            recvfile->close();
+//                            recvfile->deleteLater();
+//                        }
+//                    }
+
+//                    else // 不是接收文件
+//                    {
+//                        // 读取所有缓冲区的数据并显示接收到的内容
+//                        QByteArray data = firstline + tcpSocket->readAll();
+//                        QString datetime = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"); // 获取系统当前的时间并格式化时间
+//                        ui->textEdit->append(datetime + " 接收到来自" +
+//                                             tcpSocket->peerAddress().toString() + "-" +
+//                                             QString::number(tcpSocket->peerPort()) + "的消息:" + data);
+//                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        QString text = ui->textEdit->toPlainText();
+
+//        RecvBox* recvbox = new RecvBox(ui->scrollArea);
+
+//        scrollLayout->addWidget(recvbox); // 加入垂直布局中
+
+//        QPixmap p(":/eromanga.png");
+//        recvbox->setAvatar(p);
+//        recvbox->setBackgroundColor(Qt::white);
+//        recvbox->setBordetRadius(10);
+//        recvbox->setTextColor(Qt::black);
+
+//        if(!text.isEmpty())
+//            recvbox->setText(text);
+
+//        // 将滚动条值设置为最大值，以确保内容滚动到最底部
+//        verticalScrollBar->setValue(verticalScrollBar->maximum());
+
+
+    });
+
+
+
+    timer->setSingleShot(true); //设置为只触发一次
+    login->exec();
+
+
+    ui->setupUi(this);
+    InItUI();
+
+
+    ui->textEdit->setFocus();//设置焦点为文本框
+
+    //关闭
+    connect(ui->pushButton_6,&QPushButton::clicked,this,&QWidget::close);
+    //最大化
+    connect(ui->pushButton_8,&QPushButton::clicked,this,[&](){
+        if(!isMaximized())
+        {
+            style = styleSheet();
+            layout()->setContentsMargins(0,0,0,0);//重设边距
+            setStyleSheet(R"(
+                                #frame {
+                                    background-color: rgba(234,233,234,220);
+                                }
+                                #frame_5 {
+                                    background-color: rgb(242,242,242);
+                                }
+                                #frame_3 {
+                                    background-color: rgb(240,240,240);
+                                }
+                                #frame_6 {
+                                    background-color: rgb(242, 242, 242);
+                                }
+                                #frame_9 {
+                                    border-bottom: 2px solid rgb(232, 232, 232);
+                                }
+                                #frame_10 {
+                                    background-color: rgb(255, 255, 255);
+                                }
+                                #textEdit {
+                                    background-color: rgb(242, 242, 242);
+                                    border: none;
+                                }
+                                #pushButton_5 {
+                                    background-color: rgb(0, 153, 255);
+                                    color: rgb(255,255,255);
+                                    border: none;
+                                    border-radius:5px;
+                                }
+                                #pushButton_5:hover {
+                                    background-color:rgb(0, 147, 245);
+                                }
+                                #pushButton_5:pressed{
+                                    background-color:rgb(0, 134, 224);
+                                }
+                                #pushButton_6 {
+                                        border: none;
+                                        background-color: rgb(242,242,242);
+                                        icon: url(:/svg/exit_black.svg);
+                                }
+                                #pushButton_6:hover {
+                                        background-color: rgb(196, 43, 28);
+                                        icon: url(:/IMAGE/exit_white.png);
+                                }
+                                #pushButton_8 {
+                                        border: none;
+                                        background-color: rgb(242,242,242);
+                                        icon: url(:/svg/maxsize.svg);
+                                }
+                                #pushButton_8:hover {
+                                        background-color: rgb(232,232,232);
+                                }
+                                #pushButton_9 {
+                                        border: none;
+                                        background-color: rgb(242,242,242);
+                                        icon: url(:/svg/minimize.svg);
+                                }
+                                #pushButton_9:hover {
+                                        background-color: rgb(232,232,232);
+                                }
+                                #HorizontalSplitter::handle {
+                                    background-color: rgb(232, 232, 232);
+                                }
+                                #VerticalSplitter::handle {
+                                    background-color: rgb(232, 232, 232);
+                                }
+                            )");
+            showMaximized();
+            ui->pushButton_8->setStyleSheet("icon: url(:/IMAGE/resize_original_size.png);");
+            update();
+        }
+        else
+        {
+            int margin = boundary_width-5;
+            layout()->setContentsMargins(margin,margin,margin,margin);
+            showNormal();
+            setStyleSheet(style);
+            ui->pushButton_8->setStyleSheet("icon: url(:/svg/maxsize.svg);");
+            update();
+        }});
+    //最小化
+    connect(ui->pushButton_9,&QPushButton::clicked,this,&QWidget::showMinimized);
+}
+
+MainWidget::~MainWidget()
+{
+    delete ui;
+    if(login)
+        delete login;
+}
+
+void MainWidget::InItUI()
+{
+    setWindowFlags(Qt::FramelessWindowHint);//隐藏标题栏
+    setAttribute(Qt::WA_TranslucentBackground); // 设置窗口透明
+    setMouseTracking(true);//鼠标追踪
+    for(auto& i : findChildren<QWidget *>())i->setMouseTracking(true);//所有子控件也开启鼠标追踪
+
+    QPixmap avatar;//头像
+    avatar.load(":/IMAGE/default.png");
+    ui->label->setScaledContents(true);//图片适应label大小
+    ui->label->setPixmap(avatar);
+
+    ui->HorizontalSplitter->setChildrenCollapsible(false);//不允许把分割出的子窗口拖小到0
+    QList<int> HorizontalScale;
+    HorizontalScale<<280<<1140;
+    ui->HorizontalSplitter->setSizes(HorizontalScale);
+    ui->HorizontalSplitter->setHandleWidth(2);//分割线的宽度
+
+    ui->VerticalSplitter->setChildrenCollapsible(false);
+    QList<int> VerticalScale;
+    VerticalScale<<570<<260;
+    ui->VerticalSplitter->setSizes(VerticalScale);
+    ui->VerticalSplitter->setHandleWidth(2);
+
+    setStyleSheet(R"(
+                        #frame {
+                            border-top: 1px solid rgb(184,184,184);
+                            border-bottom: 1px solid rgb(184,184,184);
+                            border-left: 1px solid rgb(184,184,184);
+                            background-color: rgba(234,233,234,220);
+                            border-top-left-radius:10px;
+                            border-bottom-left-radius:10px;
+                        }
+                        #frame_2{
+                            border-top: 1px solid rgb(184,184,184);
+                            border-bottom: 1px solid rgb(184,184,184);
+                            border-right: 1px solid rgb(184,184,184);
+                            border-top-right-radius:10px;
+                            border-bottom-right-radius:10px;
+                        }
+                        #frame_5 {
+                            background-color: rgb(242,242,242);
+                            border-top-right-radius:10px;
+                        }
+                        #frame_3 {
+                            background-color: rgb(240,240,240);
+                        }
+                        #frame_6 {
+                            background-color: rgb(242, 242, 242);
+                            border-bottom-right-radius:10px;
+                        }
+                        #frame_9 {
+                            border-bottom: 2px solid rgb(232, 232, 232);
+                        }
+                        #frame_10 {
+                            background-color: rgb(255, 255, 255);
+                        }
+
+                        #textEdit {
+                            background-color: rgb(242, 242, 242);
+                            border: none;
+                        }
+                        #textEdit_2 {
+                            background-color: rgb(242, 242, 242);
+                            border: none;
+                        }
+                        #pushButton_5 {
+                            background-color: rgb(0, 153, 255);
+                            color: rgb(255,255,255);
+                            border: none;
+                            border-radius:5px;
+                        }
+                        #pushButton_5:hover {
+                            background-color:rgb(0, 147, 245);
+                        }
+                        #pushButton_5:pressed{
+                            background-color:rgb(0, 134, 224);
+                        }
+                        #pushButton_6 {
+                                border: none;
+                                border-top-right-radius:10px;
+                                background-color: rgb(242,242,242);
+                                icon: url(:/svg/exit_black.svg);
+                        }
+                        #pushButton_6:hover {
+                                background-color: rgb(196, 43, 28);
+                                icon: url(:/IMAGE/exit_white.png);
+                        }
+                        #pushButton_8 {
+                                border: none;
+                                background-color: rgb(242,242,242);
+                                icon: url(:/svg/maxsize.svg);
+                        }
+                        #pushButton_8:hover {
+                                background-color: rgb(232,232,232);
+                        }
+                        #pushButton_9 {
+                                border: none;
+                                background-color: rgb(242,242,242);
+                                icon: url(:/svg/minimize.svg);
+                        }
+                        #pushButton_9:hover {
+                                background-color: rgb(232,232,232);
+                        }
+                        #HorizontalSplitter::handle {
+                            background-color: rgb(232, 232, 232);
+                        }
+                        #VerticalSplitter::handle {
+                            background-color: rgb(232, 232, 232);
+                        }
+                    )");
+
+    // 初始化scroll Widget垂直布局
+    scrollWidget = new QWidget(ui->scrollArea);                 // 创建内容QWidget
+    scrollLayout = new QVBoxLayout(scrollWidget);               // 创建一个垂直布局管理器
+    scrollLayout->setSpacing(25);                               // 设置垂直布局里控件间的距离为25像素
+    scrollWidget->setLayout(scrollLayout);                      // 将垂直布局设置给内容QWidget
+    ui->scrollArea->setWidget(scrollWidget);                    // 设置内容QWidget为QScrollArea的内部控件
+    verticalScrollBar = ui->scrollArea->verticalScrollBar();    // 获取QScrollArea的垂直滚动条
+}
+
+void MainWidget::connectToServer(QPair<QString,quint16>addrAndPort)
+{
+    tcpSocket->connectToHost(addrAndPort.first,addrAndPort.second);
+    timer->start(500);
+}
+
+void MainWidget::cnnectError(QAbstractSocket::SocketError errormsg)
+{
+    switch (errormsg) {
+    case QAbstractSocket::ConnectionRefusedError:
+        QMessageBox::critical(nullptr, "被拒绝连接或超时", "连接被服务器拒绝或超时！");
+        break;
+    case QAbstractSocket::RemoteHostClosedError:
+        QMessageBox::warning(nullptr, "连接断开", "服务器断开连接！");
+        break;
+    case QAbstractSocket::HostNotFoundError:
+        QMessageBox::critical(nullptr, "地址或端口错误", "找不到指定地址和端口的主机！");
+        break;
+    case QAbstractSocket::SocketTimeoutError:
+        QMessageBox::critical(nullptr, "连接超时", "连接超时！");
+        break;
+    default:
+        QMessageBox::critical(nullptr, "其他错误", "错误信息："+tcpSocket->errorString());
+        break;
+    }
+}
+
+void MainWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);//抗锯齿
+    painter.setPen(Qt::transparent);//rgba(0,0,0,0)
+    if(!isMaximized())
+    {
+        painter.setBrush(QBrush(QColor(234,233,234,1)));//背景色
+        painter.drawPath(painterPath);//绘制
+    }
+    else
+    {
+        painter.setBrush(QBrush(QColor(234,233,234)));//背景色
+        painter.drawPath(painterPath);//绘制
+    }
+}
+
+void MainWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    QWidget::mouseMoveEvent(event);
+
+    if(!mainRect.contains(event->pos()) && !isdirectionLock && !ismove && !isMaximized())//光标在边框区域,并且改变的方向非锁定状态,并且不是在移动窗口,并且窗口不是最大化
+    {
+        isresize = true;
+        //左上角
+        if(event->pos().x() < boundary_width && event->pos().y() < boundary_width)
+        {
+            setCursor(Qt::SizeFDiagCursor);//设置光标样式
+            resize_direction = direction::left_top;
+        }
+        //左下角
+        else if(event->pos().x() < boundary_width && event->pos().y() > boundary_width + mainRect.height())
+        {
+            setCursor(Qt::SizeBDiagCursor);
+            resize_direction = direction::left_bottom;
+        }
+        //右上角
+        else if(event->pos().x() > boundary_width + mainRect.width() && event->pos().y() < boundary_width)
+        {
+            setCursor(Qt::SizeBDiagCursor);
+            resize_direction = direction::right_top;
+        }
+        //右下角
+        else if(event->pos().x() > boundary_width + mainRect.width() && event->pos().y() > boundary_width + mainRect.height())
+        {
+            setCursor(Qt::SizeFDiagCursor);
+            resize_direction = direction::right_bottom;
+        }
+        //左边框
+        else if(event->pos().x() < boundary_width)
+        {
+            setCursor(Qt::SizeHorCursor);
+            resize_direction = direction::left;
+        }
+        //右边框
+        else if(event->pos().x() > boundary_width + mainRect.width())
+        {
+            setCursor(Qt::SizeHorCursor);
+            resize_direction = direction::right;
+        }
+        //上边框
+        else if(event->pos().y() < boundary_width)
+        {
+            setCursor(Qt::SizeVerCursor);
+            resize_direction = direction::top;
+        }
+        //下边框
+        else if(event->pos().y() > boundary_width + mainRect.height())
+        {
+            setCursor(Qt::SizeVerCursor);
+            resize_direction = direction::bottom;
+        }
+    }
+
+    if(mainRect.contains(event->pos()) && event->buttons() == Qt::NoButton) //鼠标在主区域内,并且没有任何按钮按下
+    {
+        setCursor(Qt::ArrowCursor);//恢复鼠标样式
+        isresize = false;
+        isdirectionLock = false;
+        ismove = false;
+    }
+
+    if(isresize && event->buttons() & Qt::LeftButton)//在调整大小
+    {
+        isdirectionLock = true;//鼠标点击后变成锁定状态
+        ismove = false;
+        switch(resize_direction)
+        {
+        case direction::left://左边框
+        {
+            int dx =m_click.x()-event->globalPosition().x();//改变量
+            int new_x = w_left_top.x()-dx;//新的x坐标
+            setGeometry(new_x,w_left_top.y(),dx+w_right_top.x()-w_left_top.x(),height());//设置新的位置和大小
+            update();
+            break;
+        }
+        case direction::right://右边框
+        {
+            int dx = event->globalPosition().x()-m_click.x();
+            resize(dx+w_right_top.x()-w_left_top.x(),height());//向右改变大小不需要移动窗口
+            update();
+            break;
+        }
+        case direction::top://上边框
+        {
+            int dy = m_click.y() - event->globalPosition().y();
+            int new_y = w_left_top.y()-dy;
+            setGeometry(w_left_top.x(),new_y,width(),dy+w_left_bottom.y()-w_left_top.y());
+            update();
+            break;
+        }
+        case direction::bottom://下边框
+        {
+            int dy = event->globalPosition().y()-m_click.y();
+            resize(width(),dy+w_left_bottom.y()-w_left_top.y());
+            update();
+            break;
+        }
+        case direction::left_top://左上角
+        {
+            int dx =m_click.x()-event->globalPosition().x();//改变量
+            int new_x = w_left_top.x()-dx;//新的x坐标
+            int dy = m_click.y() - event->globalPosition().y();
+            int new_y = w_left_top.y()-dy;
+            setGeometry(new_x,new_y,dx+w_right_top.x()-w_left_top.x(),dy+w_left_bottom.y()-w_left_top.y());
+            update();
+            break;
+        }
+        case direction::left_bottom://左下角
+        {
+            int dx =m_click.x()-event->globalPosition().x();//改变量
+            int new_x = w_left_top.x()-dx;//新的x坐标
+            int dy = event->globalPosition().y()-m_click.y();
+            setGeometry(new_x,w_left_top.y(),dx+w_right_top.x()-w_left_top.x(),dy+w_left_bottom.y()-w_left_top.y());
+            update();
+            break;
+        }
+        case direction::right_top://右上角
+        {
+            int dx = event->globalPosition().x()-m_click.x();
+            int dy = m_click.y() - event->globalPosition().y();
+            int new_y = w_left_top.y()-dy;
+            setGeometry(w_left_top.x(),new_y,dx+w_right_top.x()-w_left_top.x(),dy+w_left_bottom.y()-w_left_top.y());
+            update();
+            break;
+        }
+        case direction::right_bottom://右下角
+        {
+            int dx = event->globalPosition().x()-m_click.x();
+            int dy = event->globalPosition().y()-m_click.y();
+            resize(dx+w_right_top.x()-w_left_top.x(),dy+w_left_bottom.y()-w_left_top.y());
+            update();
+            break;
+        }
+        default://none
+            break;
+        }
+    }
+
+    if(!isresize && event->buttons() == Qt::LeftButton && (event->pos().y() <= canmove_y || event->pos().x() <= canmove_x))//移动窗口
+    {
+        isdirectionLock = false;//改变方向变成非锁定状态
+        resize_direction = direction::none;
+        ismove = true;
+        setCursor(Qt::SizeAllCursor);//设置光标
+        if(isMaximized())
+        {
+            ui->pushButton_8->click();
+            return;
+        }
+        else
+        {
+            QPointF newPos = event->globalPosition()-m_click+w_left_top;
+            move(newPos.toPoint()); // 移动窗口到新位置
+        }
+    }
+}
+
+void MainWidget::mousePressEvent(QMouseEvent *event)
+{
+    m_click = event->globalPosition();//记录鼠标点击坐标
+    w_left_top = frameGeometry().topLeft();
+    w_left_bottom = frameGeometry().bottomLeft();
+    w_right_top = frameGeometry().topRight();
+    QWidget::mousePressEvent(event);
+}
+
+void MainWidget::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    painterPath.clear();
+    if(!isMaximized())
+        painterPath.addRoundedRect(rect(),15,15);//添加绘制区域，并设置圆角
+    else
+        painterPath.addRoundedRect(rect(),0,0);
+    boundary_width = 5+layout()->contentsMargins().left();// 获取布局边距，设置边框宽度
+    mainRect.setRect(boundary_width,boundary_width,width()-2*boundary_width,height()-2*boundary_width);
+    canmove_y = ui->frame_10->pos().y()+ui->frame_10->height();
+    canmove_x = ui->frame->pos().x()+ui->frame->width();
+}
+
+void MainWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    QWidget::mouseDoubleClickEvent(event);
+    if(event->button() == Qt::LeftButton && (event->pos().y() <= canmove_y || event->pos().x() <= canmove_x))
+        ui->pushButton_8->click();
+}
