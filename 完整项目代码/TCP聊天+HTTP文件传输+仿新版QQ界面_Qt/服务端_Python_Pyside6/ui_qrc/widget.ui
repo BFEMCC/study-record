@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>668</width>
+    <height>544</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="CardWidget" name="CardWidget_2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="topMargin">
+       <number>9</number>
+      </property>
+      <property name="rightMargin">
+       <number>9</number>
+      </property>
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="ElevatedCardWidget" name="ElevatedCardWidget_2">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="BodyLabel" name="addressLabel">
+           <property name="text">
+            <string>监听地址</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="LineEdit" name="addressEdit">
+           <property name="minimumSize">
+            <size>
+             <width>138</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>127.0.0.1</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PrimaryPushButton" name="WLANaddress">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>无线WLANIPv4地址</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PrimaryPushButton" name="localAddressBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>本机地址</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="BodyLabel" name="portLabel">
+           <property name="text">
+            <string>监听端口</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="LineEdit" name="portEdit">
+           <property name="minimumSize">
+            <size>
+             <width>122</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>12345</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="ElevatedCardWidget" name="ElevatedCardWidget_3">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="PrimaryPushButton" name="startListen">
+           <property name="text">
+            <string>开始监听</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PrimaryPushButton" name="stopListen">
+           <property name="text">
+            <string>停止监听</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PushButton" name="disconnectAll">
+           <property name="text">
+            <string>断开所有连接</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PushButton" name="clearMessage">
+           <property name="text">
+            <string>清空消息记录</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="PrimaryToolButton" name="setSavePath"/>
+         </item>
+         <item>
+          <widget class="PrimaryToolButton" name="openSavePath"/>
+         </item>
+         <item>
+          <widget class="PrimaryToolButton" name="switchTopics"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="ElevatedCardWidget" name="ElevatedCardWidget_4">
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="StrongBodyLabel" name="messageLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>消息记录</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="StrongBodyLabel" name="clientListLebel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>客户端列表</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" rowspan="4">
+          <widget class="TextEdit" name="messageEdit"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="ScrollArea" name="clientListScrollArea">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="VboxWidget">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>311</width>
+              <height>98</height>
+             </rect>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QWidget" name="widget" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <property name="spacing">
+             <number>6</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="CheckBox" name="selectAll">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>全选</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="PrimaryPushButton" name="disconnectSelect">
+              <property name="text">
+               <string>断开选中客户端</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="ElevatedCardWidget" name="ElevatedCardWidget_5">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <item row="1" column="0">
+          <widget class="PrimaryPushButton" name="sendMessageBtn">
+           <property name="text">
+            <string>向选中客户端发送消息</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="TextEdit" name="sendEdit"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="PrimaryPushButton" name="sendFileBtn">
+           <property name="text">
+            <string>向选中客户端发送文件</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="ElevatedCardWidget" name="ElevatedCardWidget">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="CaptionLabel" name="state_listenState">
+           <property name="text">
+            <string>监听状态：停止监听</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="CaptionLabel" name="state_listenAddress">
+           <property name="text">
+            <string>监听地址：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="CaptionLabel" name="state_listenPort">
+           <property name="text">
+            <string>监听端口：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="CaptionLabel" name="state_cilentNum_text">
+           <property name="text">
+            <string>客户端数量：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="CaptionLabel" name="state_cilentNum">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PrimaryPushButton</class>
+   <extends>PushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>ToolButton</class>
+   <extends>QToolButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PrimaryToolButton</class>
+   <extends>ToolButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>CardWidget</class>
+   <extends>QFrame</extends>
+   <header>qfluentwidgets</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ElevatedCardWidget</class>
+   <extends>SimpleCardWidget</extends>
+   <header>qfluentwidgets</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SimpleCardWidget</class>
+   <extends>CardWidget</extends>
+   <header>qfluentwidgets</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ScrollArea</class>
+   <extends>QScrollArea</extends>
+   <header>qfluentwidgets</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CaptionLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>BodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>StrongBodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>TextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
