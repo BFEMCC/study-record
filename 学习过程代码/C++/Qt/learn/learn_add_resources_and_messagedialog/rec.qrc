@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>image/a.ico</file>
+        <file>image/b.png</file>
+        <file>image/c.png</file>
+        <file>image/d.png</file>
+        <file>image/e.png</file>
+        <file>image/g.png</file>
+        <file>image/i.png</file>
+        <file>image/j.png</file>
+        <file>image/k.png</file>
+        <file>image/l.png</file>
+        <file>image/m.png</file>
+        <file>image/n.png</file>
+        <file>image/o.png</file>
+        <file>image/p.png</file>
+        <file>image/q.png</file>
+        <file>image/r.png</file>
+        <file>image/s.png</file>
+        <file>image/t.png</file>
+        <file>image/u.png</file>
+        <file>image/v.png</file>
+    </qresource>
+</RCC>
