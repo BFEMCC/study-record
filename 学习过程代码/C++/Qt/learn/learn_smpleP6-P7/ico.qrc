@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/picture">
+        <file>picture/learn.ico</file>
+        <file>picture/x.bmp</file>
+    </qresource>
+</RCC>

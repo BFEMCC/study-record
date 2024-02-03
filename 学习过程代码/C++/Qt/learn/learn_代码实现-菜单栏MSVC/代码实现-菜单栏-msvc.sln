@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "代码实现-菜单栏-msvc", "代码实现-菜单栏-msvc.vcxproj", "{14F5D18E-903D-4C48-8FB8-CD5B50AB3CA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14F5D18E-903D-4C48-8FB8-CD5B50AB3CA2}.Debug|x64.ActiveCfg = Debug|x64
+		{14F5D18E-903D-4C48-8FB8-CD5B50AB3CA2}.Debug|x64.Build.0 = Debug|x64
+		{14F5D18E-903D-4C48-8FB8-CD5B50AB3CA2}.Release|x64.ActiveCfg = Release|x64
+		{14F5D18E-903D-4C48-8FB8-CD5B50AB3CA2}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C6AFBC9-076D-427A-9F99-B348EE9A2820}
+	EndGlobalSection
+EndGlobal
